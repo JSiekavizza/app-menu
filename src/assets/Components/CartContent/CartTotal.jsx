@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { dataContext } from "../Context/DataContext";
+import { dataContext } from "../Context/dataContext";
 import { IoLogoWhatsapp } from "react-icons/io";
 
 import React from "react";
