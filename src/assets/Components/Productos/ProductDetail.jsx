@@ -1,7 +1,7 @@
 // ProductoDetail.jsx
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { dataContext } from "../Context/DataContext";
+import { dataContext } from "../Context/dataContext";
 
 import { Link } from "react-router-dom";
 
