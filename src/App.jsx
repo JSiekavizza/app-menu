@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DataProvider from "./assets/Components/Context/DataContext";
+import DataProvider from "./assets/Components/Context/dataContext";
 
 import MenuHome from "./assets/Menu/MenuHome";
 import CartContent from "./assets/Components/CartContent/CartContent";
