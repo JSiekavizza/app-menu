@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { dataContext } from "../Context/DataContext";
+import { dataContext } from "../Context/dataContext";
 
 import { Link } from "react-router-dom";
 
