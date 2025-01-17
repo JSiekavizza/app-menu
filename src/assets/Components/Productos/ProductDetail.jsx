@@ -1,4 +1,3 @@
-// ProductoDetail.jsx
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { dataContext } from "../Context/DataContext";
@@ -14,20 +13,22 @@ const ProductoDetail = () => {
   const [producto, setProducto] = useState(null);
 
   useEffect(() => {
-    // Buscar el producto correspondiente por id
-    const productoEncontrado = data.categorias
-      .flatMap((categoria) => categoria.productos)
-      .find((producto) => producto.id === id);
+    // Validar que data y data.categorias estén definidos
+    if (data?.categorias) {
+      const productoEncontrado = data.categorias
+        .flatMap((categoria) => categoria.productos)
+        .find((producto) => producto.id === id);
 
-    setProducto(productoEncontrado);
+      setProducto(productoEncontrado);
+    }
   }, [id, data]);
 
   if (!producto) {
     return <div>No se encontró el producto.</div>;
   }
 
-  const categoria = data.categorias.find(
-    (categoria) => categoria.nombre.toLowerCase() === producto.catogoria
+  const categoria = data?.categorias?.find(
+    (categoria) => categoria.nombre.toLowerCase() === producto?.catogoria
   );
 
   const obtenerImagenBanner = () => {
@@ -77,7 +78,7 @@ const ProductoDetail = () => {
               </p>
 
               <div className="flex justify-between mx-3 my-3">
-                <span class="title-font font-medium text-2xl text-gray-900">
+                <span className="title-font font-medium text-2xl text-gray-900">
                   ${producto.price}.000
                 </span>
                 <button

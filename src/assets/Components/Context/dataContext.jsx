@@ -4,7 +4,7 @@ import axios from "axios";
 export const dataContext = createContext();
 
 const DataProvider = ({ children }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({ categorias: [] });
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
