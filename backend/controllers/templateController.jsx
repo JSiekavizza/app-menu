@@ -1,23 +1,14 @@
-let templates = [
-  { id: 1, name: "Minimalista", active: true },
-  { id: 2, name: "Moderna", active: false },
-  { id: 3, name: "Clásica", active: false },
-];
+const db = require("../data/db.json");
 
-const getTemplates = (req, res) => {
-  res.status(200).json(templates);
-};
-
-const updateTemplate = (req, res) => {
+const getTemplateById = (req, res) => {
   const { id } = req.params;
+  const template = db.templates.find((t) => t.template === parseInt(id));
 
-  templates = templates.map((template) =>
-    template.id === parseInt(id)
-      ? { ...template, active: true }
-      : { ...template, active: false }
-  );
-
-  res.status(200).json(templates);
+  if (template) {
+    res.status(200).json(template); // Devuelve el template encontrado
+  } else {
+    res.status(404).json({ message: "Template no encontrado" }); // Error si no existe
+  }
 };
 
-module.exports = { getTemplates, updateTemplate };
+module.exports = { getTemplateById };

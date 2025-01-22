@@ -1,11 +1,7 @@
 const express = require("express");
-const {
-  getTemplates,
-  updateTemplate,
-} = require("../controllers/templateController.jsx");
+const { getTemplateById } = require("../controllers/templateController.jsx");
 const router = express.Router();
 
-router.get("/", getTemplates);
-router.post("/:id", updateTemplate);
+router.get("/:id", getTemplateById);
 
 module.exports = router;

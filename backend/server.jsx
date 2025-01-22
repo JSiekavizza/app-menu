@@ -6,13 +6,22 @@ const app = express();
 const PORT = 5000;
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Permite solicitudes solo desde tu frontend
+  })
+);
 app.use(bodyParser.json());
 
 // Rutas
-app.use("/api/categories", require("./routes/categories.jsx"));
-app.use("/api/cart", require("./routes/cart.jsx"));
-app.use("/api/templates", require("./routes/templates.jsx"));
+
+app.use("/api/templates", require("./routes/templates.jsx")); // Ruta para templates
+app.use("/api/categories", require("./routes/categories.jsx")); // Ruta para categorías
+
+app.get("/api/config", (req, res) => {
+  const db = require("./data/db.json"); // Importa los datos desde db.json
+  res.status(200).json(db.config); // Envía el config del archivo db.json
+});
 
 // Servidor
 app.listen(PORT, () => {
