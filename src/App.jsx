@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DataProvider from "./assets/Components/Context/DataContext";
+import DataProvider from "./assets/Components/Context/dataContext.jsx";
 
 import MenuHome from "./assets/Menu/MenuHome";
 import CartContent from "./assets/Components/CartContent/CartContent";
@@ -25,7 +25,7 @@ function App() {
               }
             />
             <Route path="/carrito" element={<CartContent />}></Route>
-            <Route path="/menu-pizzas" element={<PizzaProducts />}></Route>
+            <Route path="/menu-pizza" element={<PizzaProducts />}></Route>
             <Route
               path="/menu-empanadas"
               element={<EmpanadaProducts />}
