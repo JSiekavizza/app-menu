@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CategoryBanner = ({ title, image, link }) => {
+const CategoryBanner = ({ title, bannerImage, link }) => {
   return (
     <div className="p-4">
       <Link to={link} className="block group">
         <div className="relative">
           <img
-            src={image}
+            src={bannerImage}
             alt={title}
             className="rounded-lg object-cover w-full h-40 group-hover:opacity-90"
           />

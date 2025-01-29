@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { dataContext } from "../Context/DataContext";
 
-import { Link } from "react-router-dom";
-
-import Menu from "../../Menu/Menu";
+import Header from "../Header.jsx";
 import Promo1 from "../Promo/Promo1";
 
 const ProductoDetail = () => {
@@ -28,11 +26,11 @@ const ProductoDetail = () => {
   }
 
   const categoria = data?.categorias?.find(
-    (categoria) => categoria.nombre.toLowerCase() === producto?.catogoria
+    (categoria) => categoria.nombre.toLowerCase() === producto?.categoria
   );
 
   const obtenerImagenBanner = () => {
-    switch (producto.catogoria) {
+    switch (producto.categoria) {
       case "pizzas":
         return "/bannerPromoPizza.png"; // Imagen de Pizza
       case "empanadas":
@@ -48,13 +46,13 @@ const ProductoDetail = () => {
 
   return (
     <>
-      <Menu />
+      <Header />
       <Promo1
-        bannerImage={obtenerImagenBanner()}
+        bannerImage={obtenerImagenBanner()} // Se asegura de obtener la imagen correcta
         categoria={categoria?.nombre}
       />
 
-      <section className="bg-yellow-500  body-font overflow-hidden mt-5">
+      <section className="bg-yellow-500 body-font overflow-hidden mt-5">
         <div className="container p-3 mx-auto">
           <div className="lg:w-full bg-white mx-auto flex flex-wrap items-center rounded p-2">
             <img
@@ -64,7 +62,7 @@ const ProductoDetail = () => {
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font tracking-widest">
-                {producto.catogoria}
+                {producto.categoria} {/* Corregí esta parte */}
               </h2>
               <h1 className="text-2xl font-extrabold mb-1">{producto.name}</h1>
 
@@ -83,7 +81,7 @@ const ProductoDetail = () => {
                 </span>
                 <button
                   onClick={() => buyProducts(producto)}
-                  className="flex text-black bg-yellow-500  py-2 px-6 rounded"
+                  className="flex text-black bg-yellow-500 py-2 px-6 rounded"
                 >
                   Agregar al carrito
                 </button>

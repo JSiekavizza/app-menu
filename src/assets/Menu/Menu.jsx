@@ -11,15 +11,10 @@ const Menu = () => {
 
   return (
     <div className="bg-white flex items-center justify-between rounded ">
-      <div className="ml-3">
-        <Link to="/">
-          <img
-            className="rounded-full h-24"
-            src="/logo.jpg"
-            alt="img-logo-pizza"
-          ></img>
-        </Link>
-      </div>
+      <Link className="flex ml-4" to="/">
+        <h1 className="font-bold">Logo Restaurante</h1>
+        <h2 className="text-lg font-h2">Pedido Agil a la mesa</h2>
+      </Link>
       <Link className="mr-3" to="/carrito">
         <div className="text-5xl">
           <CiShoppingCart className="" />

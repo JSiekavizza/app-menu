@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
 import Menu from "../../Menu/Menu";
+import Header from "../Header.jsx";
 import CartElements from "./CartElements";
 import CartTotal from "./CartTotal";
 
@@ -14,7 +15,7 @@ const CartContent = () => {
 
   return (
     <>
-      <Menu />
+      <Header />
       <Link className="flex flex-col items-center mt-5" to="/">
         <button className="flex items-center text-black bg-yellow-500  py-2 px-6 rounded">
           <FaLongArrowAltLeft className="mr-3" />
