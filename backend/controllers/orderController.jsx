@@ -1,60 +1,67 @@
-const db = require("../data/db.json"); // Simulación con db.json
 const fs = require("fs");
+const path = require("path");
 
-// Obtener todos los pedidos
+const dbPath = path.join(__dirname, "../data/db.json");
+
 const getOrders = (req, res) => {
-  res.status(200).json(db.orders || []);
-};
-
-// Crear un nuevo pedido
-const createOrder = (req, res) => {
-  const { cart, total } = req.body;
-
-  if (!cart || cart.length === 0) {
-    return res.status(400).json({ message: "El carrito está vacío" });
+  try {
+    const db = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+    res.json(db.orders || []);
+  } catch (error) {
+    console.error("Error al leer pedidos:", error);
+    res.status(500).json({ message: "Error al obtener pedidos" });
   }
-
-  const newOrder = {
-    id: Date.now().toString(),
-    items: cart,
-    total,
-    status: "pendiente",
-    timestamp: new Date().toISOString(),
-  };
-
-  db.orders = db.orders || [];
-  db.orders.push(newOrder);
-
-  // Guardar en db.json
-  fs.writeFile("./backend/data/db.json", JSON.stringify(db, null, 2), (err) => {
-    if (err) {
-      console.error("Error al guardar el pedido:", err);
-      return res.status(500).json({ message: "Error interno del servidor" });
-    }
-    res.status(201).json(newOrder);
-  });
 };
 
-// Actualizar el estado de un pedido
+const addOrder = (req, res) => {
+  try {
+    const { cart, total } = req.body;
+
+    if (!cart || cart.length === 0) {
+      return res.status(400).json({ message: "El carrito está vacío" });
+    }
+
+    const db = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+
+    // Asegurar que orders existe en el JSON
+    if (!db.orders) {
+      db.orders = [];
+    }
+
+    const newOrder = {
+      id: db.orders.length + 1,
+      cart,
+      total,
+      status: "Pendiente",
+    };
+
+    db.orders.push(newOrder);
+
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+
+    res.status(201).json(newOrder);
+  } catch (error) {
+    console.error("Error al agregar pedido:", error);
+    res.status(500).json({ message: "Error al procesar el pedido" });
+  }
+};
+
+// Actualizar estado del pedido
 const updateOrderStatus = (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
 
-  const order = db.orders.find((order) => order.id === id);
-  if (!order) {
+  const db = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+
+  const orderIndex = db.orders.findIndex((order) => order.id == id);
+  if (orderIndex === -1) {
     return res.status(404).json({ message: "Pedido no encontrado" });
   }
 
-  order.status = status;
+  db.orders[orderIndex].status = status;
+  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
 
-  // Guardar en db.json
-  fs.writeFile("./backend/data/db.json", JSON.stringify(db, null, 2), (err) => {
-    if (err) {
-      console.error("Error al actualizar el pedido:", err);
-      return res.status(500).json({ message: "Error interno del servidor" });
-    }
-    res.status(200).json(order);
-  });
+  res.json({ message: "Estado actualizado", order: db.orders[orderIndex] });
 };
 
-module.exports = { getOrders, createOrder, updateOrderStatus };
+module.exports = { getOrders, addOrder, updateOrderStatus };

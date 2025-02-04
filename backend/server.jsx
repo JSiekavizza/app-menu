@@ -14,11 +14,10 @@ app.use(
 app.use(bodyParser.json());
 
 // Rutas
-
-app.use("/api/templates", require("./routes/templates.jsx")); // Ruta para templates
-app.use("/api/categories", require("./routes/categories.jsx")); // Ruta para categorías
 app.use("/api/users", require("./routes/users.jsx"));
 app.use("/api/orders", require("./routes/orders.jsx"));
+app.use("/api/templates", require("./routes/templates.jsx")); // Ruta para templates
+app.use("/api/categories", require("./routes/categories.jsx")); // Ruta para categorías
 
 app.get("/api/config", (req, res) => {
   const db = require("./data/db.json"); // Importa los datos desde db.json

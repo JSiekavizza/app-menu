@@ -246,16 +246,89 @@
           ]
         }
       ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin123",
+      "password": "123456",
+      "role": "admin"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "cart": [
+        {
+          "categoria": "pizzas",
+          "img": "/imagenes/napolitana.jpg",
+          "name": "Pizza Napolitana",
+          "ingredientes": "Salsa Napolitana Especial",
+          "id": "02",
+          "price": 29,
+          "quanty": 1
+        }
+      ],
+      "total": 29,
+      "status": "Completado"
     },
     {
-      "users": [
+      "id": 2,
+      "cart": [
         {
-          "id": 1,
-          "username": "admin",
-          "password": "123456",
-          "role": "admin"
+          "categoria": "bebidas",
+          "img": "/imagenes/cerveza.jpg",
+          "name": "Cerveza",
+          "tamaño": "473 ml",
+          "id": "08",
+          "price": 8,
+          "quanty": 4
+        },
+        {
+          "categoria": "bebidas",
+          "img": "/imagenes/gaseosa.jpg",
+          "name": "Productos Postobon y Cocacola",
+          "tamaño": "500 ml",
+          "id": "09",
+          "price": 8,
+          "quanty": 1
         }
-      ]
+      ],
+      "total": 40,
+      "status": "Completado"
+    },
+    {
+      "id": 3,
+      "cart": [
+        {
+          "categoria": "empanadas",
+          "img": "/imagenes/empanada_carne.jpg",
+          "name": "Empanada de Carne",
+          "ingredientes": "Carne molida",
+          "id": "05",
+          "price": 25,
+          "quanty": 1
+        }
+      ],
+      "total": 25,
+      "status": "Completado"
+    },
+    {
+      "id": 4,
+      "cart": [
+        {
+          "categoria": "empanadas",
+          "img": "/imagenes/empanada_carne.jpg",
+          "name": "Empanada de Carne",
+          "ingredientes": "Carne molida",
+          "id": "05",
+          "price": 25,
+          "quanty": 1
+        }
+      ],
+      "total": 25,
+      "status": "Completado"
     }
   ],
   "config": {
