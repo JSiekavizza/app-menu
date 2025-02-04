@@ -18,6 +18,7 @@ const CartTotal = () => {
         total,
       });
 
+      console.log("Respuesta del servidor:", response.data);
       alert("Pedido realizado con éxito!");
       setCart([]); // Vaciar carrito después del pedido
     } catch (error) {

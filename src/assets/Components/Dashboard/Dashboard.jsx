@@ -20,12 +20,20 @@ const Dashboard = () => {
 
   const updateOrderStatus = async (id, status) => {
     try {
-      await axios.put(`${API_BASE_URL}/orders/${id}`, { status });
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === id ? { ...order, status } : order
-        )
-      );
+      const response = await axios.put(`${API_BASE_URL}/orders/${id}`, {
+        status,
+      });
+
+      if (response.status === 200) {
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order.id === id ? { ...order, status } : order
+          )
+        );
+        console.log("Estado actualizado con éxito");
+      } else {
+        console.error("Error al actualizar el estado del pedido");
+      }
     } catch (error) {
       console.error("Error al actualizar el estado del pedido:", error);
     }
@@ -51,7 +59,7 @@ const Dashboard = () => {
                 <tr key={order.id} className="border">
                   <td className="p-2">{order.id}</td>
                   <td className="p-2">
-                    {order.items.map((item) => item.name).join(", ")}
+                    {order.cart.map((item) => item.name).join(", ")}
                   </td>
                   <td className="p-2">${order.total}.000</td>
                   <td className="p-2">{order.status}</td>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthContext } from "./assets/Components/Context/AuthContext.jsx";
 import AuthProvider from "./assets/Components/Context/AuthContext.jsx";
 import DataProvider from "./assets/Components/Context/dataContext.jsx";
 import { TemplateProvider } from "./assets/Components/Context/TemplateProvider.jsx";

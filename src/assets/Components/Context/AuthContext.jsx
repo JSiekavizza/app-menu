@@ -1,7 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
 import API_BASE_URL from "../../../apiConfig.js";
 
-export const AuthContext = createContext();
+// Creamos el contexto una sola vez
+const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -15,17 +16,21 @@ const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/users/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await response.json();
+      const text = await response.text(); // 🔎 Verifica la respuesta antes de parsear
+      console.log("Respuesta del servidor (texto):", text);
+
+      const data = JSON.parse(text);
+      console.log("Respuesta del servidor (JSON):", data);
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        setUser(data.user);
+        setUser({ username: data.user.username, role: data.user.role });
         setToken(data.token);
         return true;
       } else {
@@ -44,6 +49,8 @@ const AuthProvider = ({ children }) => {
     setToken("");
   };
 
+  console.log("Usuario autenticado", user);
+
   return (
     <AuthContext.Provider value={{ user, token, login, logout }}>
       {children}
@@ -51,4 +58,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+// Exportamos `AuthProvider` como default y `AuthContext` como exportación nombrada
+export { AuthContext };
 export default AuthProvider;
