@@ -64,4 +64,21 @@ const updateOrderStatus = (req, res) => {
   res.json({ message: "Estado actualizado", order: db.orders[orderIndex] });
 };
 
-module.exports = { getOrders, addOrder, updateOrderStatus };
+// 🚀 **Eliminar pedido**
+const deleteOrder = (req, res) => {
+  const { id } = req.params;
+
+  const db = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+  const orderIndex = db.orders.findIndex((order) => order.id == id);
+
+  if (orderIndex === -1) {
+    return res.status(404).json({ message: "Pedido no encontrado" });
+  }
+
+  db.orders.splice(orderIndex, 1);
+  fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+
+  res.json({ message: "Pedido eliminado con éxito" });
+};
+
+module.exports = { getOrders, addOrder, updateOrderStatus, deleteOrder };
