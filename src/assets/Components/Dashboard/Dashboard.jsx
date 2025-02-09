@@ -10,7 +10,11 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/orders`);
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get(`${API_BASE_URL}/orders`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setOrders(response.data);
       } catch (error) {
         console.error("Error al obtener pedidos:", error);
@@ -25,21 +29,21 @@ const Dashboard = () => {
 
     const modalContent = document.createElement("div");
     modalContent.innerHTML = `
-      <div id="edit-order">
-        ${updatedCart
-          .map(
-            (item, index) => `
-          <div id="product-${index}" class="flex justify-between items-center mb-2">
-            <span>${item.name}</span>
-            <input type="number" id="quantity-${index}" value="${item.quanty}" min="1" class="border rounded p-1 w-16">
-            <button id="remove-${index}" class="bg-red-500 text-white px-2 rounded">❌</button>
-          </div>
-        `
-          )
-          .join("")}
-      </div>
-      <button id="clear-order" class="bg-gray-500 text-white w-full py-2 mt-3 rounded">🗑️ Vaciar Pedido</button>
-    `;
+    <div id="edit-order">
+      ${updatedCart
+        .map(
+          (item, index) => `
+        <div id="product-${index}" class="flex justify-between items-center mb-2">
+          <span>${item.name}</span>
+          <input type="number" id="quantity-${index}" value="${item.quanty}" min="1" class="border rounded p-1 w-16">
+          <button id="remove-${index}" class="bg-red-500 text-white px-2 rounded">❌</button>
+        </div>
+      `
+        )
+        .join("")}
+    </div>
+    <button id="clear-order" class="bg-gray-500 text-white w-full py-2 mt-3 rounded">🗑️ Vaciar Pedido</button>
+  `;
 
     const swalInstance = Swal.fire({
       title: "Editar Pedido",
@@ -83,11 +87,21 @@ const Dashboard = () => {
     );
 
     try {
-      const response = await axios.put(`${API_BASE_URL}/orders/${order.id}`, {
-        cart: result.value,
-        total: newTotal,
-        status: order.status,
-      });
+      const token = localStorage.getItem("token"); // 🔥 Obtener token de autenticación
+      if (!token) {
+        Swal.fire(
+          "Error",
+          "No estás autenticado. Inicia sesión primero.",
+          "error"
+        );
+        return;
+      }
+
+      const response = await axios.put(
+        `${API_BASE_URL}/orders/${order.id}`,
+        { cart: result.value, total: newTotal, status: order.status },
+        { headers: { Authorization: `Bearer ${token}` } } // 🔑 Enviar token
+      );
 
       if (response.status === 200) {
         setOrders((prevOrders) =>
@@ -107,9 +121,19 @@ const Dashboard = () => {
 
   const updateOrderStatus = async (id, status) => {
     try {
-      const response = await axios.put(`${API_BASE_URL}/orders/${id}`, {
-        status,
-      });
+      const token = localStorage.getItem("token"); // 🔑 Obtener el token guardado
+      if (!token) {
+        alert("No estás autenticado. Inicia sesión primero.");
+        return;
+      }
+
+      const response = await axios.put(
+        `${API_BASE_URL}/orders/${id}`,
+        { status },
+        {
+          headers: { Authorization: `Bearer ${token}` }, // 🔥 Enviar el token en headers
+        }
+      );
 
       if (response.status === 200) {
         setOrders((prevOrders) =>
@@ -138,7 +162,16 @@ const Dashboard = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`${API_BASE_URL}/orders/${id}`);
+        const token = localStorage.getItem("token"); // 🔑 Obtener el token
+        if (!token) {
+          alert("No estás autenticado. Inicia sesión primero.");
+          return;
+        }
+
+        await axios.delete(`${API_BASE_URL}/orders/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }, // 🔥 Enviar token en headers
+        });
+
         setOrders((prevOrders) =>
           prevOrders.filter((order) => order.id !== id)
         );

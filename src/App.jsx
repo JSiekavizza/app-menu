@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from "./assets/Components/Context/AuthContext.jsx";
-import AuthProvider from "./assets/Components/Context/AuthContext.jsx";
+import { AuthProvider } from "./assets/Components/Context/AuthContext.jsx";
 import DataProvider from "./assets/Components/Context/dataContext.jsx";
 import { TemplateProvider } from "./assets/Components/Context/TemplateProvider.jsx";
 import Dashboard from "./assets/Components/Dashboard/Dashboard.jsx";
@@ -12,8 +12,8 @@ import CategoryProducts from "./assets/Components/Categorias/CategoryProducts.js
 import ProductDetail from "./assets/Components/Productos/ProductDetail";
 
 const PrivateRoute = ({ children }) => {
-  const { user } = useContext(AuthContext);
-  return user ? children : <Navigate to="/login" />;
+  const { user, token } = useContext(AuthContext);
+  return user && token ? children : <Navigate to="/login" />;
 };
 
 function App() {

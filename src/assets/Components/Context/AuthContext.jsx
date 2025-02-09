@@ -10,7 +10,8 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      setUser({ username: "admin", role: "admin" }); // Simulación de usuario autenticado
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (storedUser) setUser(storedUser);
     }
   }, [token]);
 
@@ -22,16 +23,23 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify({ username, password }),
       });
 
-      const text = await response.text(); // 🔎 Verifica la respuesta antes de parsear
-      console.log("Respuesta del servidor (texto):", text);
-
-      const data = JSON.parse(text);
-      console.log("Respuesta del servidor (JSON):", data);
+      const data = await response.json();
+      console.log("🔑 Token recibido del backend:", data.token);
+      console.log("🟢 Usuario autenticado (datos originales):", data.user);
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        setUser({ username: data.user.username, role: data.user.role });
+
+        const cleanUser = {
+          id: data.user.id,
+          username: data.user.username,
+          role: data.user.role,
+        };
+
+        setUser(cleanUser);
         setToken(data.token);
+
+        console.log("✅ Usuario autenticado (después de limpiar):", cleanUser);
         return true;
       } else {
         console.error("Error de autenticación:", data.message);
@@ -45,11 +53,10 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser(null);
     setToken("");
   };
-
-  console.log("Usuario autenticado", user);
 
   return (
     <AuthContext.Provider value={{ user, token, login, logout }}>
@@ -58,6 +65,4 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-// Exportamos `AuthProvider` como default y `AuthContext` como exportación nombrada
-export { AuthContext };
-export default AuthProvider;
+export { AuthContext, AuthProvider };
