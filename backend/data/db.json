@@ -252,7 +252,7 @@
     {
       "id": 1,
       "username": "admin123",
-      "password": "123456",
+      "password": "$2a$10$YPFfkbwnSb3Qkdlouyx9/egI7/Q1TyinBbBT1SYgboDK9kn/c5TJq",
       "role": "admin"
     }
   ],

@@ -5,12 +5,13 @@ const {
   updateOrderStatus,
   deleteOrder,
 } = require("../controllers/orderController.jsx");
+const { verifyToken } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.get("/", getOrders);
-router.post("/", addOrder);
-router.put("/:id", updateOrderStatus);
-router.delete("/:id", deleteOrder);
+router.get("/", verifyToken, getOrders); // Protegido para admins
+router.post("/", addOrder); // Permitir pedidos sin autenticación
+router.put("/:id", verifyToken, updateOrderStatus); // Protegido para admins
+router.delete("/:id", verifyToken, deleteOrder); // Protegido para admins
 
 module.exports = router;
