@@ -1,120 +1,136 @@
 {
-  "categorias": [
+  "templates": [
     {
-      "nombre": "Pizza",
-      "productos": [
+      "template": 1,
+      "categorias": [
         {
-          "catogoria": "pizzas",
-          "img": "/imagenes/muzzarella.jpg",
-          "name": "Pizza Muzzarella",
-          "ingredientes": "Con Extra de Queso Muzzarella",
-          "id": "01",
-          "price": 29
+          "nombre": "Pizza",
+          "productos": [
+            {
+              "categoria": "pizzas",
+              "img": "/imagenes/muzzarella.jpg",
+              "name": "Pizza Muzzarella",
+              "ingredientes": "Con Extra de Queso Muzzarella",
+              "id": "01",
+              "price": 29
+            },
+            {
+              "categoria": "pizzas",
+              "img": "/imagenes/napolitana.jpg",
+              "name": "Pizza Napolitana",
+              "ingredientes": "Salsa Napolitana Especial",
+              "id": "02",
+              "price": 29
+            },
+            {
+              "categoria": "pizzas",
+              "img": "/imagenes/jamonymorron.jpg",
+              "name": "Pizza Jamon y Morron",
+              "ingredientes": "Doble ingrediente",
+              "id": "03",
+              "price": 32
+            }
+          ]
         },
         {
-          "catogoria": "pizzas",
-          "img": "/imagenes/napolitana.jpg",
-          "name": "Pizza Napolitana",
-          "ingredientes": "Salsa Napolitana Especial",
-          "id": "02",
-          "price": 29
+          "nombre": "Empanadas",
+          "productos": [
+            {
+              "categoria": "empanadas",
+              "img": "/imagenes/empanada_atun.jpg",
+              "name": "Empanada de Atun",
+              "ingredientes": "Atun y picadillo",
+              "id": "04",
+              "price": 25
+            },
+            {
+              "categoria": "empanadas",
+              "img": "/imagenes/empanada_carne.jpg",
+              "name": "Empanada de Carne",
+              "ingredientes": "Carne molida",
+              "id": "05",
+              "price": 25
+            },
+            {
+              "categoria": "empanadas",
+              "img": "/imagenes/empanada_jamonyqueso.jpg",
+              "name": "Empanada Jamon y queso",
+              "ingredientes": "Jamon y queso",
+              "id": "06",
+              "price": 25
+            }
+          ]
         },
         {
-          "catogoria": "pizzas",
-          "img": "/imagenes/jamonymorron.jpg",
-          "name": "Pizza Jamon y Morron",
-          "ingredientes": "Doble ingrediente",
-          "id": "03",
-          "price": 32
+          "nombre": "Bebidas",
+          "productos": [
+            {
+              "categoria": "bebidas",
+              "img": "/imagenes/agua.jpg",
+              "name": "Agua en Botella",
+              "tamaño": "1 litro",
+              "id": "07",
+              "price": 8
+            },
+            {
+              "categoria": "bebidas",
+              "img": "/imagenes/cerveza.jpg",
+              "name": "Cerveza",
+              "tamaño": "473 ml",
+              "id": "08",
+              "price": 8
+            },
+            {
+              "categoria": "bebidas",
+              "img": "/imagenes/gaseosa.jpg",
+              "name": "Productos Postobon y Cocacola",
+              "tamaño": "500 ml",
+              "id": "09",
+              "price": 8
+            }
+          ]
+        },
+        {
+          "nombre": "Postres",
+          "productos": [
+            {
+              "categoria": "postres",
+              "img": "/imagenes/almendrado.jpg",
+              "name": "Postre caliente",
+              "ingredientes": "con almendras",
+              "id": "010",
+              "price": 15
+            },
+            {
+              "categoria": "postres",
+              "img": "/imagenes/bombones.jpg",
+              "name": "Helado Chocolate",
+              "ingredientes": "Chocolate negro",
+              "id": "011",
+              "price": 15
+            },
+            {
+              "categoria": "postres",
+              "img": "/imagenes/helado.jpg",
+              "name": "Postre con Helado",
+              "ingredientes": "Helado de vainilla",
+              "id": "012",
+              "price": 15
+            }
+          ]
         }
       ]
     },
     {
-      "nombre": "Empanadas",
-      "productos": [
-        {
-          "catogoria": "empanadas",
-          "img": "/imagenes/empanada_atun.jpg",
-          "name": "Empanada de Atun",
-          "ingredientes": "Atun y picadillo",
-          "id": "04",
-          "price": 25
-        },
-        {
-          "catogoria": "empanadas",
-          "img": "/imagenes/empanada_carne.jpg",
-          "name": "Empanada de Carne",
-          "ingredientes": "Carne molida",
-          "id": "05",
-          "price": 25
-        },
-        {
-          "catogoria": "empanadas",
-          "img": "/imagenes/empanada_jamonyqueso.jpg",
-          "name": "Empanada Jamon y queso",
-          "ingredientes": "Jamon y queso",
-          "id": "06",
-          "price": 25
-        }
-      ]
+      "template": 2,
+      "categorias": []
     },
     {
-      "nombre": "Bebidas",
-      "productos": [
-        {
-          "catogoria": "bebidas",
-          "img": "/imagenes/agua.jpg",
-          "name": "Agua en Botella",
-          "tamaño": "1 litro",
-          "id": "07",
-          "price": 8
-        },
-        {
-          "catogoria": "bebidas",
-          "img": "/imagenes/cerveza.jpg",
-          "name": "Cerveza",
-          "tamaño": "473 ml",
-          "id": "08",
-          "price": 8
-        },
-        {
-          "catogoria": "bebidas",
-          "img": "/imagenes/gaseosa.jpg",
-          "name": "Productos Postobon y Cocacola",
-          "tamaño": "500 ml",
-          "id": "09",
-          "price": 8
-        }
-      ]
-    },
-    {
-      "nombre": "Postres",
-      "productos": [
-        {
-          "catogoria": "postres",
-          "img": "/imagenes/almendrado.jpg",
-          "name": "Postre caliente",
-          "ingredientes": "con almendras",
-          "id": "010",
-          "price": 15
-        },
-        {
-          "catogoria": "postres",
-          "img": "/imagenes/bombones.jpg",
-          "name": "Helado Chocolate",
-          "ingredientes": "Chocolate negro",
-          "id": "011",
-          "price": 15
-        },
-        {
-          "catogoria": "postres",
-          "img": "/imagenes/helado.jpg",
-          "name": "Postre con Helado",
-          "ingredientes": "Helado de vainilla",
-          "id": "012",
-          "price": 15
-        }
-      ]
+      "template": 3,
+      "categorias": []
     }
-  ]
+  ],
+  "config": {
+    "activeTemplate": 1
+  }
 }
