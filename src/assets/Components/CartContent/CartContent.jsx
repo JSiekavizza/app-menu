@@ -42,6 +42,18 @@ const CartContent = () => {
           Tu carrito está vacío
         </h2>
       )}
+      <div className="flex flex-col justify-center items-center">
+        <p className="text-black mb-3">
+          Ingresa a la plataforma Demo de Gestion de pedidos Aqui:
+        </p>
+        <Link
+          to="/login"
+          target="_blank"
+          className="bg-orange-600 rounded-md p-1 px-5 "
+        >
+          DASHBOARD
+        </Link>
+      </div>
     </>
   );
 };

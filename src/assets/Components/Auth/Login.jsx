@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
       <form
         className="bg-white p-6 rounded shadow-md w-80"
         onSubmit={handleSubmit}
@@ -48,6 +48,10 @@ const Login = () => {
           Ingresar
         </button>
       </form>
+      <div className="text-gray-400 mt-5">
+        <p>Usuario: admin123</p>
+        <p>Contraseña: 123456</p>
+      </div>
     </div>
   );
 };

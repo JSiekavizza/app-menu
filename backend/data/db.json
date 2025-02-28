@@ -256,7 +256,24 @@
       "role": "admin"
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": 3,
+      "cart": [
+        {
+          "categoria": "pizzas",
+          "img": "/imagenes/muzzarella.jpg",
+          "name": "Pizza Muzzarella",
+          "ingredientes": "Con Extra de Queso Muzzarella",
+          "id": "01",
+          "price": 29,
+          "quanty": 2
+        }
+      ],
+      "total": 58,
+      "status": "Pendiente"
+    }
+  ],
   "config": {
     "activeTemplate": 1
   }
