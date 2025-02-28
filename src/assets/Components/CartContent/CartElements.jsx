@@ -1,10 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-import { useContext } from "react";
-import { dataContext } from "../Context/dataContext";
-=======
 import useCart from "../hooks/useCart";
->>>>>>> front-end
 
 import CartItemCounter from "./CartItemCounter";
 import { AiOutlineDelete } from "react-icons/ai";

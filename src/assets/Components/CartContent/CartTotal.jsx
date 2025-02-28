@@ -1,9 +1,5 @@
 import { useContext } from "react";
-<<<<<<< HEAD
-import { dataContext } from "../Context/dataContext";
-=======
 import { dataContext } from "../Context/dataContext.jsx";
->>>>>>> front-end
 import { IoLogoWhatsapp } from "react-icons/io";
 import API_BASE_URL from "../../../apiConfig";
 import axios from "axios";

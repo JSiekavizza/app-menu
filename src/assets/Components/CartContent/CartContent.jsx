@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import { useContext } from "react";
-import { dataContext } from "../Context/dataContext";
-=======
 import React from "react";
 import useCart from "../hooks/useCart";
 
->>>>>>> front-end
 import { Link } from "react-router-dom";
 
 import { FaLongArrowAltLeft } from "react-icons/fa";
