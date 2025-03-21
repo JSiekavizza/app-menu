@@ -1,14 +1,18 @@
+require("dotenv").config(); // Cargar variables de entorno
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 
 const app = express();
-const PORT = 5000;
-const SECRET_KEY = "secreto_super_seguro";
-
-// Middleware
-app.use(cors({ origin: "http://localhost:5173" })); // Permite solicitudes desde el frontend
+const PORT = process.env.PORT || 5000; // Puerto dinámico en Railway
+const SECRET_KEY =
+  process.env.SECRET_KEY || //"secreto_super_seguro";
+  // Middleware
+  app.use(
+    cors({ origin: process.env.FRONTEND_URL || "http://localhost:5173" })
+  ); // // Permitir acceso desde Vercel
 app.use(bodyParser.json());
 
 // Middleware para verificar el token en rutas protegidas
@@ -55,7 +59,12 @@ app.get("/api/config", (req, res) => {
   res.status(200).json(db.config);
 });
 
+// **Preparación para producción**: Servir archivos estáticos en Railway
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "public")));
+}
+
 // Servidor
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en ${PORT}`);
 });
