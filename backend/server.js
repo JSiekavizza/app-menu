@@ -15,6 +15,8 @@ const SECRET_KEY =
   ); // // Permitir acceso desde Vercel
 app.use(bodyParser.json());
 
+console.log("CORS configurado para:", process.env.FRONTEND_URL);
+
 // Middleware para verificar el token en rutas protegidas
 const verifyToken = (req, res, next) => {
   const token = req.headers["authorization"];
